@@ -12,21 +12,23 @@ background:#f2f2f2;
 
 .quiz-box{
 background:white;
-width:400px;
-margin:50px auto;
+width:420px;
+margin:40px auto;
 padding:20px;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 button{
-display:block;
-margin:10px auto;
+margin:8px;
 padding:10px;
 width:250px;
 cursor:pointer;
 }
 
+.nav-btn{
+width:120px;
+}
 </style>
 
 </head>
@@ -41,6 +43,15 @@ cursor:pointer;
 
 <div id="options"></div>
 
+<br>
+
+<button class="nav-btn" onclick="prevQuestion()">⬅ Previous</button>
+<button class="nav-btn" onclick="nextQuestion()">Next ➡</button>
+
+<br><br>
+
+<button onclick="finishQuiz()">Finish Quiz</button>
+
 <p id="result"></p>
 
 </div>
@@ -53,41 +64,40 @@ q:"A person who loves books",
 options:["Philanthropist","Bibliophile","Optimist","Linguist"],
 answer:"Bibliophile"
 },
-
 {
 q:"A person who hates mankind",
 options:["Misanthropist","Philanthropist","Optimist","Realist"],
 answer:"Misanthropist"
 },
-
 {
 q:"A person who travels from place to place",
 options:["Nomad","Citizen","Native","Farmer"],
 answer:"Nomad"
 },
-
 {
 q:"A person who writes dictionaries",
 options:["Lexicographer","Biographer","Editor","Poet"],
 answer:"Lexicographer"
 }
-
 ];
 
 let index = 0;
-let score = 0;
+let userAnswers = [];
 
 function loadQuestion(){
 
 let q = quiz[index];
 
-document.getElementById("question").innerText = q.q;
+document.getElementById("question").innerText =
+(index+1)+". "+q.q;
 
-let optionsHTML = "";
+let optionsHTML="";
 
 q.options.forEach(opt => {
 
-optionsHTML += `<button onclick="checkAnswer('${opt}')">${opt}</button>`;
+let checked = userAnswers[index] === opt ? "style='background:#d4edda'" : "";
+
+optionsHTML += `<button ${checked} onclick="selectAnswer('${opt}')">${opt}</button><br>`;
 
 });
 
@@ -95,29 +105,60 @@ document.getElementById("options").innerHTML = optionsHTML;
 
 }
 
-function checkAnswer(ans){
+function selectAnswer(ans){
 
-if(ans === quiz[index].answer){
-score++;
-document.getElementById("result").innerHTML="✅ Correct";
-}else{
-document.getElementById("result").innerHTML="❌ Wrong";
-}
+userAnswers[index] = ans;
 
-index++;
-
-setTimeout(()=>{
-
-document.getElementById("result").innerHTML="";
-
-if(index < quiz.length){
 loadQuestion();
-}else{
-document.getElementById("question").innerHTML="Quiz Finished 🎉";
-document.getElementById("options").innerHTML="Your Score: "+score+" / "+quiz.length;
+
 }
 
-},1000);
+function nextQuestion(){
+
+if(index < quiz.length-1){
+index++;
+loadQuestion();
+}
+
+}
+
+function prevQuestion(){
+
+if(index > 0){
+index--;
+loadQuestion();
+}
+
+}
+
+function finishQuiz(){
+
+let correct = 0;
+let wrong = 0;
+
+quiz.forEach((q,i)=>{
+
+if(userAnswers[i] === q.answer){
+correct++;
+}else{
+wrong++;
+}
+
+});
+
+document.querySelector(".quiz-box").innerHTML = `
+
+<h2>Quiz Report</h2>
+
+<p>Total Questions: ${quiz.length}</p>
+
+<p style="color:green">Correct Answers: ${correct}</p>
+
+<p style="color:red">Wrong Answers: ${wrong}</p>
+
+<p>Your Score: ${correct} / ${quiz.length}</p>
+
+`;
 
 }
 
