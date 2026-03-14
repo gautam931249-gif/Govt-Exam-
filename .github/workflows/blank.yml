@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>English Quiz</title>
+<style>
+body {font-family: Arial; text-align:center;}
+button {display:block; margin:10px auto; padding:10px; width:250px;}
+</style>
+</head>
+
+<body>
+
+<h2>One Word Substitution Quiz</h2>
+
+<p>A person who loves books:</p>
+
+<button onclick="checkAnswer('A')">A. Philanthropist</button>
+<button onclick="checkAnswer('B')">B. Bibliophile</button>
+<button onclick="checkAnswer('C')">C. Optimist</button>
+<button onclick="checkAnswer('D')">D. Linguist</button>
+
+<h3 id="result"></h3>
+
+<script>
+function checkAnswer(answer){
+ if(answer === "B"){
+   document.getElementById("result").innerText="✅ Correct!";
+ } else {
+   document.getElementById("result").innerText="❌ Wrong!";
+ }
+}
+</script>
+
+</body>
+</html>
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
