@@ -4,33 +4,83 @@
 <title>One Word Substitution Quiz</title>
 
 <style>
+
 body{
 font-family:Arial;
 text-align:center;
-background:#f2f2f2;
+background:linear-gradient(135deg,#74ebd5,#ACB6E5);
+height:100vh;
 }
 
 .quiz-box{
 background:white;
 width:420px;
-margin:40px auto;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
+margin:60px auto;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+animation:fadeIn 0.8s ease;
 }
 
 button{
 margin:8px;
-padding:10px;
-width:250px;
+padding:12px;
+width:260px;
 cursor:pointer;
+border:none;
+border-radius:6px;
+background:#e0e0e0;
+transition:all 0.25s ease;
+}
+
+button:hover{
+background:#4CAF50;
+color:white;
+transform:scale(1.05);
 }
 
 .nav-btn{
 width:120px;
+background:#2196F3;
+color:white;
 }
-</style>
 
+.nav-btn:hover{
+background:#0b7dda;
+}
+
+.correct{
+background:#4CAF50 !important;
+color:white;
+animation:pulse 0.4s;
+}
+
+.wrong{
+background:#f44336 !important;
+color:white;
+animation:shake 0.4s;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-5px)}
+50%{transform:translateX(5px)}
+75%{transform:translateX(-5px)}
+100%{transform:translateX(0)}
+}
+
+</style>
 </head>
 
 <body>
@@ -52,13 +102,11 @@ width:120px;
 
 <button onclick="finishQuiz()">Finish Quiz</button>
 
-<p id="result"></p>
-
 </div>
 
 <script>
 
-const quiz = [
+const quiz=[
 {
 q:"A person who loves books",
 options:["Philanthropist","Bibliophile","Optimist","Linguist"],
@@ -81,82 +129,77 @@ answer:"Lexicographer"
 }
 ];
 
-let index = 0;
-let userAnswers = [];
+let index=0;
+let userAnswers=[];
 
 function loadQuestion(){
 
-let q = quiz[index];
+let q=quiz[index];
 
-document.getElementById("question").innerText =
-(index+1)+". "+q.q;
+document.getElementById("question").innerText=(index+1)+". "+q.q;
 
-let optionsHTML="";
+let html="";
 
-q.options.forEach(opt => {
+q.options.forEach(opt=>{
 
-let checked = userAnswers[index] === opt ? "style='background:#d4edda'" : "";
-
-optionsHTML += `<button ${checked} onclick="selectAnswer('${opt}')">${opt}</button><br>`;
+html+=`<button onclick="selectAnswer(this,'${opt}')">${opt}</button><br>`;
 
 });
 
-document.getElementById("options").innerHTML = optionsHTML;
+document.getElementById("options").innerHTML=html;
 
 }
 
-function selectAnswer(ans){
+function selectAnswer(btn,ans){
 
-userAnswers[index] = ans;
+userAnswers[index]=ans;
 
-loadQuestion();
+if(ans===quiz[index].answer){
+btn.classList.add("correct");
+}else{
+btn.classList.add("wrong");
+}
 
 }
 
 function nextQuestion(){
-
-if(index < quiz.length-1){
+if(index<quiz.length-1){
 index++;
 loadQuestion();
 }
-
 }
 
 function prevQuestion(){
-
-if(index > 0){
+if(index>0){
 index--;
 loadQuestion();
 }
-
 }
 
 function finishQuiz(){
 
-let correct = 0;
-let wrong = 0;
+let correct=0;
+let wrong=0;
 
 quiz.forEach((q,i)=>{
-
-if(userAnswers[i] === q.answer){
+if(userAnswers[i]===q.answer){
 correct++;
 }else{
 wrong++;
 }
-
 });
 
-document.querySelector(".quiz-box").innerHTML = `
+document.querySelector(".quiz-box").innerHTML=`
 
-<h2>Quiz Report</h2>
+<h2>🎉 Quiz Finished</h2>
 
 <p>Total Questions: ${quiz.length}</p>
 
-<p style="color:green">Correct Answers: ${correct}</p>
+<p style="color:green;font-size:18px;">Correct: ${correct}</p>
 
-<p style="color:red">Wrong Answers: ${wrong}</p>
+<p style="color:red;font-size:18px;">Wrong: ${wrong}</p>
 
-<p>Your Score: ${correct} / ${quiz.length}</p>
+<h3>Your Score: ${correct}/${quiz.length}</h3>
 
 `;
 
