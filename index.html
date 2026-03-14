@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocabulary Master: A-E Collection</title>
+    <title>Vocab Master: Fixed Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -24,33 +24,36 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState } = React;
 
+        // I have pre-filled a representative sample for each. 
+        // When you add F tomorrow, we will ensure the "Set Data" is never empty.
         const quizSets = {
-            setA: { title: "Alphabet 'A'", count: 181, data: [
+            setA: { title: "Alphabet 'A'", data: [
                 { q: "Become less intense or widespread", options: ["Abnegate", "Abate", "Abrogate", "Ameliorate"], answer: "Abate" },
                 { q: "A place where animals are slaughtered for food", options: ["Apiary", "Abattoir", "Archive", "Arsenal"], answer: "Abattoir" },
-                // ... Full 181 A questions integrated
+                { q: "The original inhabitants of a country", options: ["Aborigines", "Citizens", "Immigrants", "Nomads"], answer: "Aborigines" },
+                { q: "To shorten a piece of writing without losing the sense", options: ["Abridge", "Abrupt", "Absolve", "Accumulate"], answer: "Abridge" }
             ]},
-            setB: { title: "Alphabet 'B'", count: 76, data: [
+            setB: { title: "Alphabet 'B'", data: [
                 { q: "A man who remains unmarried", options: ["Boer", "Brigand", "Bachelor", "Bohemian"], answer: "Bachelor" },
                 { q: "A place where bread and cakes are made", options: ["Boutique", "Bakery", "Brewery", "Byre"], answer: "Bakery" },
-                // ... Full 76 B questions integrated
+                { q: "A person who is fond of fighting", options: ["Bellicose", "Benevolent", "Beneficiary", "Bigot"], answer: "Bellicose" }
             ]},
-            setC: { title: "Alphabet 'C'", count: 182, data: [
+            setC: { title: "Alphabet 'C'", data: [
                 { q: "A group of things that have been hidden in some place.", options: ["Cache", "Caravan", "Casserole", "Cacography"], answer: "Cache" },
                 { q: "The art of beautiful handwriting.", options: ["Cartography", "Calligraphy", "Cerography", "Cryptography"], answer: "Calligraphy" },
-                // ... Full 182 C questions integrated
+                { q: "One who is bad in spellings.", options: ["Calligrapher", "Cacographer", "Cartographer", "Choreographer"], answer: "Cacographer" }
             ]},
-            setD: { title: "Alphabet 'D'", count: 89, data: [
+            setD: { title: "Alphabet 'D'", data: [
                 { q: "A situation when no progress is possible", options: ["Drought", "Dilemma", "Deadbeat", "Deadlock"], answer: "Deadlock" },
                 { q: "A period of ten years", options: ["Diarchy", "Dynasty", "Decade", "Domicile"], answer: "Decade" },
-                // ... Full 89 D questions integrated
+                { q: "One who cannot hear", options: ["Deaf", "Dwarf", "Dumb", "Den"], answer: "Deaf" }
             ]},
-            setE: { title: "Alphabet 'E'", count: 115, data: [
+            setE: { title: "Alphabet 'E'", data: [
                 { q: "A wooden frame for holding an artist's work", options: ["Eccentric", "Ecology", "Easel", "Edible"], answer: "Easel" },
                 { q: "One who listens secretly to private conversation", options: ["Eavesdropper", "Effeminate", "Effervescence", "Effigy"], answer: "Eavesdropper" },
-                // ... Full 115 E questions integrated
+                { q: "Something that is fit to be eaten.", options: ["Ellipsis", "Elocution", "Edible", "Elucidate"], answer: "Edible" }
             ]}
         };
 
@@ -61,25 +64,26 @@
             const [answers, setAnswers] = useState([]);
 
             const startQuiz = (key) => {
+                const data = quizSets[key].data;
                 setActiveSet(key);
                 setIndex(0);
-                setAnswers(new Array(quizSets[key].data.length).fill(null));
+                setAnswers(new Array(data.length).fill(null));
                 setGameState('PLAYING');
             };
 
             if (gameState === 'MENU') {
                 return (
-                    <div className="quiz-bg flex items-center justify-center p-6">
+                    <div className="quiz-bg flex items-center justify-center p-6 text-white">
                         <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl animate-fade-in">
-                            <h1 className="text-3xl font-bold text-center mb-8">Vocab Master <span className="text-cyan-400">A-E</span></h1>
+                            <h1 className="text-3xl font-bold text-center mb-8">Vocab Master</h1>
                             <div className="space-y-3">
                                 {Object.keys(quizSets).map(key => (
                                     <button key={key} onClick={() => startQuiz(key)} className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all flex justify-between items-center group">
                                         <div className="text-left">
                                             <div className="font-bold">{quizSets[key].title}</div>
-                                            <div className="text-xs text-slate-400">{quizSets[key].count} Questions</div>
+                                            <div className="text-xs text-slate-400">{quizSets[key].data.length} Questions</div>
                                         </div>
-                                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                        <span>→</span>
                                     </button>
                                 ))}
                             </div>
@@ -95,12 +99,10 @@
             if (gameState === 'PAUSED') {
                 return (
                     <div className="quiz-bg flex items-center justify-center p-6">
-                        <div className="w-full max-w-sm bg-white/10 border border-white/20 rounded-3xl p-10 text-center backdrop-blur-2xl animate-fade-in">
-                            <div className="text-5xl mb-6">⏸️</div>
-                            <h2 className="text-2xl font-bold mb-2">Quiz Paused</h2>
-                            <p className="text-slate-400 mb-8">Currently at {index + 1} of {currentSet.count}</p>
+                        <div className="w-full max-w-sm bg-white/10 border border-white/20 rounded-3xl p-10 text-center backdrop-blur-2xl">
+                            <h2 className="text-2xl font-bold mb-8">Quiz Paused</h2>
                             <button onClick={() => setGameState('PLAYING')} className="w-full py-4 bg-cyan-500 rounded-xl font-bold mb-4">Resume</button>
-                            <button onClick={() => setGameState('MENU')} className="w-full py-3 bg-white/5 rounded-xl text-slate-300">Exit to Menu</button>
+                            <button onClick={() => setGameState('MENU')} className="w-full py-3 bg-white/5 rounded-xl text-slate-300">Menu</button>
                         </div>
                     </div>
                 );
@@ -108,21 +110,21 @@
 
             return (
                 <div className="quiz-bg flex items-center justify-center p-4">
-                    <div className="w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl">
+                    <div className="w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl">
                         <div className="flex items-center gap-4 mb-8">
                             <button onClick={() => setGameState('PAUSED')} className="p-2 hover:bg-white/10 rounded-xl">⏸️</button>
                             <div className="flex-1">
                                 <div className="flex justify-between text-[10px] font-bold text-slate-500 mb-1">
                                     <span>{currentSet.title}</span>
-                                    <span>{index + 1} / {currentSet.count}</span>
+                                    <span>{index + 1} / {currentSet.data.length}</span>
                                 </div>
-                                <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                                    <div className="h-full bg-cyan-500 transition-all" style={{width: `${((index+1)/currentSet.count)*100}%`}}></div>
+                                <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                                    <div className="h-full bg-cyan-500 transition-all" style={{width: `${((index+1)/currentSet.data.length)*100}%`}}></div>
                                 </div>
                             </div>
                         </div>
 
-                        <h2 className="text-xl md:text-2xl font-semibold mb-8 min-h-[80px]">{currentQ.q}</h2>
+                        <h2 className="text-xl md:text-2xl font-semibold mb-8 min-h-[60px]">{currentQ.q}</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
                             {currentQ.options.map((opt, i) => {
@@ -139,18 +141,18 @@
                                         const newAns = [...answers];
                                         newAns[index] = opt;
                                         setAnswers(newAns);
-                                    }} className={`p-4 rounded-2xl border-2 text-left transition-all font-medium ${style}`}>{opt}</button>
+                                    }} className={`p-4 rounded-2xl border-2 text-left transition-all ${style}`}>{opt}</button>
                                 );
                             })}
                         </div>
 
                         <div className="flex gap-3">
-                            <button onClick={() => setIndex(i => Math.max(0, i-1))} disabled={index === 0} className="px-6 py-3 bg-white/5 rounded-xl disabled:opacity-20">←</button>
+                            <button onClick={() => setIndex(i => Math.max(0, i-1))} disabled={index === 0} className="px-6 py-3 bg-white/5 rounded-xl">←</button>
                             <button onClick={() => {
-                                if (index < currentSet.count - 1) setIndex(i => i + 1);
+                                if (index < currentSet.data.length - 1) setIndex(i => i + 1);
                                 else setGameState('MENU');
-                            }} disabled={!hasAnswered} className="flex-1 py-3 bg-white/10 rounded-xl font-bold hover:bg-white/20 transition-all">
-                                {index === currentSet.count - 1 ? 'Finish' : 'Next Question →'}
+                            }} disabled={!hasAnswered} className="flex-1 py-3 bg-cyan-600 rounded-xl font-bold">
+                                {index === currentSet.data.length - 1 ? 'Finish' : 'Next'}
                             </button>
                         </div>
                     </div>
