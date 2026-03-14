@@ -1,35 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>English Quiz</title>
+<title>One Word Substitution Quiz</title>
+
 <style>
-body{font-family:Arial;text-align:center}
-button{display:block;margin:10px auto;padding:10px;width:250px}
+body{
+font-family:Arial;
+text-align:center;
+background:#f2f2f2;
+}
+
+.quiz-box{
+background:white;
+width:400px;
+margin:50px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+button{
+display:block;
+margin:10px auto;
+padding:10px;
+width:250px;
+cursor:pointer;
+}
+
 </style>
+
 </head>
 
 <body>
 
+<div class="quiz-box">
+
 <h2>One Word Substitution Quiz</h2>
 
-<p>A person who loves books:</p>
+<h3 id="question"></h3>
 
-<button onclick="check('A')">A. Philanthropist</button>
-<button onclick="check('B')">B. Bibliophile</button>
-<button onclick="check('C')">C. Optimist</button>
-<button onclick="check('D')">D. Linguist</button>
+<div id="options"></div>
 
-<h3 id="result"></h3>
+<p id="result"></p>
+
+</div>
 
 <script>
-function check(answer){
-if(answer==='B'){
-document.getElementById("result").innerText="✅ Correct!";
+
+const quiz = [
+{
+q:"A person who loves books",
+options:["Philanthropist","Bibliophile","Optimist","Linguist"],
+answer:"Bibliophile"
+},
+
+{
+q:"A person who hates mankind",
+options:["Misanthropist","Philanthropist","Optimist","Realist"],
+answer:"Misanthropist"
+},
+
+{
+q:"A person who travels from place to place",
+options:["Nomad","Citizen","Native","Farmer"],
+answer:"Nomad"
+},
+
+{
+q:"A person who writes dictionaries",
+options:["Lexicographer","Biographer","Editor","Poet"],
+answer:"Lexicographer"
 }
-else{
-document.getElementById("result").innerText="❌ Wrong!";
+
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+
+let q = quiz[index];
+
+document.getElementById("question").innerText = q.q;
+
+let optionsHTML = "";
+
+q.options.forEach(opt => {
+
+optionsHTML += `<button onclick="checkAnswer('${opt}')">${opt}</button>`;
+
+});
+
+document.getElementById("options").innerHTML = optionsHTML;
+
 }
+
+function checkAnswer(ans){
+
+if(ans === quiz[index].answer){
+score++;
+document.getElementById("result").innerHTML="✅ Correct";
+}else{
+document.getElementById("result").innerHTML="❌ Wrong";
 }
+
+index++;
+
+setTimeout(()=>{
+
+document.getElementById("result").innerHTML="";
+
+if(index < quiz.length){
+loadQuestion();
+}else{
+document.getElementById("question").innerHTML="Quiz Finished 🎉";
+document.getElementById("options").innerHTML="Your Score: "+score+" / "+quiz.length;
+}
+
+},1000);
+
+}
+
+loadQuestion();
+
 </script>
 
 </body>
