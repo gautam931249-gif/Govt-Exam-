@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Word Substitution Quiz</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -16,11 +17,15 @@
         .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
         .animate-shake { animation: shake 0.2s ease-in-out 0s 2; }
         body {
-            background-color: #020617;
+            background-color: #020617 !important;
+            margin: 0;
+            font-family: sans-serif;
+            color: white;
+        }
+        .quiz-container {
             background-image: radial-gradient(at 80% 20%, hsla(260, 72%, 15%, 1) 0px, transparent 50%),
                               radial-gradient(at 20% 80%, hsla(190, 72%, 15%, 1) 0px, transparent 50%);
-            color: white;
-            min-height: 100-screen;
+            min-height: 100vh;
         }
     </style>
 </head>
@@ -30,12 +35,10 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Optimized Icon component to prevent rendering bugs
-        const LucideIcon = ({ name, className = "w-6 h-6" }) => {
+        // Simplified Icon component
+        const Icon = ({ name, className = "w-6 h-6" }) => {
             useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
+                if (window.lucide) window.lucide.createIcons();
             }, [name]);
             return <i data-lucide={name} className={className}></i>;
         };
@@ -48,7 +51,7 @@
         ];
 
         function App() {
-            const [gameState, setGameState] = useState('START'); // START, QUIZ, RESULT
+            const [gameState, setGameState] = useState('START'); 
             const [index, setIndex] = useState(0);
             const [userAnswers, setUserAnswers] = useState(new Array(quizData.length).fill(null));
 
@@ -63,34 +66,20 @@
                 setUserAnswers(newAnswers);
             };
 
-            const calculateResults = () => {
-                let correct = 0;
-                userAnswers.forEach((ans, i) => { if (ans === quizData[i].answer) correct++; });
-                return { correct, wrong: quizData.length - correct };
-            };
-
-            // --- TAB 1: START SCREEN ---
             if (gameState === 'START') {
                 return (
-                    <div className="min-h-screen flex items-center justify-center p-4">
+                    <div className="quiz-container flex items-center justify-center p-4">
                         <div className="w-full max-w-md backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 text-center shadow-2xl animate-fade-in">
                             <div className="mb-6 flex justify-center">
                                 <div className="p-4 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl">
-                                    <LucideIcon name="brain-circuit" className="w-12 h-12 text-white" />
+                                    <Icon name="brain-circuit" className="w-12 h-12 text-white" />
                                 </div>
                             </div>
                             <h1 className="text-3xl font-bold mb-2">Vocabulary Quiz</h1>
-                            <p className="text-slate-400 mb-8">One Word Substitution Challenge</p>
-                            
-                            <div className="text-left bg-black/30 rounded-xl p-5 mb-8 text-sm text-slate-300 space-y-3">
-                                <div className="flex items-center gap-3"><LucideIcon name="list" className="w-4 h-4 text-cyan-400"/> {quizData.length} Questions total</div>
-                                <div className="flex items-center gap-3"><LucideIcon name="lock" className="w-4 h-4 text-cyan-400"/> Choices are permanent once clicked</div>
-                                <div className="flex items-center gap-3"><LucideIcon name="zap" className="w-4 h-4 text-cyan-400"/> Review answers at the end</div>
-                            </div>
-
+                            <p className="text-slate-400 mb-8">One Word Substitution</p>
                             <button 
                                 onClick={() => setGameState('QUIZ')}
-                                className="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 font-bold text-white transition-all transform active:scale-95 shadow-lg shadow-cyan-500/20"
+                                className="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 font-bold text-white transition-all transform active:scale-95 shadow-lg"
                             >
                                 Start The Quiz
                             </button>
@@ -99,30 +88,14 @@
                 );
             }
 
-            // --- TAB 2: RESULTS SCREEN ---
             if (gameState === 'RESULT') {
-                const { correct, wrong } = calculateResults();
-                const scorePercent = Math.round((correct / quizData.length) * 100);
-                
+                const correct = userAnswers.filter((ans, i) => ans === quizData[i].answer).length;
                 return (
-                    <div className="min-h-screen flex items-center justify-center p-4">
+                    <div className="quiz-container flex items-center justify-center p-4">
                         <div className="w-full max-w-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl animate-fade-in text-center">
-                            <LucideIcon name="trophy" className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-                            <h2 className="text-4xl font-bold mb-2">Results</h2>
-                            <p className="text-slate-400 mb-8">You scored {scorePercent}%</p>
-                            
-                            <div className="grid grid-cols-2 gap-4 mb-8">
-                                <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl">
-                                    <div className="text-3xl font-bold text-emerald-400">{correct}</div>
-                                    <div className="text-xs uppercase tracking-wider text-slate-400">Correct</div>
-                                </div>
-                                <div className="p-6 bg-red-500/10 border border-red-500/20 rounded-2xl">
-                                    <div className="text-3xl font-bold text-red-400">{wrong}</div>
-                                    <div className="text-xs uppercase tracking-wider text-slate-400">Wrong</div>
-                                </div>
-                            </div>
-                            
-                            <button onClick={() => window.location.reload()} className="w-full py-4 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors">
+                            <Icon name="trophy" className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+                            <h2 className="text-4xl font-bold mb-8">Results: {correct} / {quizData.length}</h2>
+                            <button onClick={() => window.location.reload()} className="w-full py-4 rounded-xl bg-white text-slate-900 font-bold">
                                 Play Again
                             </button>
                         </div>
@@ -130,17 +103,16 @@
                 );
             }
 
-            // --- TAB 3: QUIZ SCREEN ---
             return (
-                <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="quiz-container flex items-center justify-center p-4">
                     <div className="w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl animate-fade-in">
                         <div className="mb-6">
-                            <div className="flex justify-between text-xs text-slate-400 mb-2 font-bold tracking-widest">
-                                <span>QUESTION {index + 1} / {quizData.length}</span>
+                            <div className="flex justify-between text-xs text-slate-400 mb-2 font-bold uppercase tracking-widest">
+                                <span>Question {index + 1}</span>
                                 <span>{Math.round(progress)}%</span>
                             </div>
                             <div className="w-full h-1.5 bg-white/5 rounded-full">
-                                <div className="h-full bg-cyan-500 transition-all duration-500" style={{ width: `${progress}%` }}></div>
+                                <div className="h-full bg-cyan-500 transition-all" style={{ width: `${progress}%` }}></div>
                             </div>
                         </div>
 
@@ -155,7 +127,7 @@
                                 if (hasAnswered) {
                                     if (isCorrect) btnStyle = "bg-emerald-500/20 border-emerald-500 text-emerald-300";
                                     else if (isUserChoice) btnStyle = "bg-red-500/20 border-red-500 text-red-300 animate-shake";
-                                    else btnStyle = "bg-transparent border-transparent opacity-20 text-slate-500";
+                                    else btnStyle = "opacity-20 border-transparent text-slate-500";
                                 }
 
                                 return (
@@ -163,11 +135,11 @@
                                         key={i}
                                         disabled={hasAnswered}
                                         onClick={() => selectAnswer(option)}
-                                        className={`w-full p-4 rounded-xl text-left border-2 flex justify-between items-center font-medium transition-all ${btnStyle}`}
+                                        className={`w-full p-4 rounded-xl text-left border-2 flex justify-between items-center transition-all ${btnStyle}`}
                                     >
                                         {option}
-                                        {hasAnswered && isCorrect && <LucideIcon name="check-circle" className="w-5 h-5 text-emerald-400" />}
-                                        {hasAnswered && isUserChoice && !isCorrect && <LucideIcon name="x-circle" className="w-5 h-5 text-red-400" />}
+                                        {hasAnswered && isCorrect && <Icon name="check-circle" className="w-5 h-5 text-emerald-400" />}
+                                        {hasAnswered && isUserChoice && !isCorrect && <Icon name="x-circle" className="w-5 h-5 text-red-400" />}
                                     </button>
                                 );
                             })}
@@ -177,26 +149,18 @@
                             <button 
                                 onClick={() => setIndex(prev => Math.max(0, prev - 1))} 
                                 disabled={index === 0} 
-                                className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 disabled:opacity-20 hover:bg-white/10 transition-all"
+                                className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 disabled:opacity-20"
                             >
-                                <LucideIcon name="chevron-left" className="w-5 h-5" />
+                                <Icon name="chevron-left" />
                             </button>
                             
                             {index === quizData.length - 1 ? (
-                                <button 
-                                    onClick={() => setGameState('RESULT')} 
-                                    disabled={!hasAnswered}
-                                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold disabled:opacity-50"
-                                >
-                                    Finish Quiz
+                                <button onClick={() => setGameState('RESULT')} disabled={!hasAnswered} className="flex-1 py-3 rounded-xl bg-cyan-500 font-bold disabled:opacity-50">
+                                    Finish
                                 </button>
                             ) : (
-                                <button 
-                                    onClick={() => setIndex(prev => prev + 1)} 
-                                    disabled={!hasAnswered}
-                                    className="flex-1 py-3 rounded-xl bg-white/10 font-bold hover:bg-white/20 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-                                >
-                                    Next Question <LucideIcon name="chevron-right" className="w-5 h-5" />
+                                <button onClick={() => setIndex(prev => prev + 1)} disabled={!hasAnswered} className="flex-1 py-3 rounded-xl bg-white/10 font-bold disabled:opacity-50 flex items-center justify-center gap-2">
+                                    Next <Icon name="chevron-right" />
                                 </button>
                             )}
                         </div>
@@ -205,7 +169,6 @@
             );
         }
 
-        // Initialize React properly
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
