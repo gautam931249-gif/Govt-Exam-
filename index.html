@@ -1,53 +1,108 @@
-<script>
-  let quizData = [];
-  let currentQuestionIndex = 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Vocabulary Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <h1>English Vocabulary Quiz</h1>
+                <p>Test your English vocabulary knowledge with our comprehensive quiz!</p>
+                <div class="quiz-options">
+                    <div class="option-card">
+                        <h3>Quiz Settings</h3>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="shuffleQuestions">
+                            <span>Shuffle Questions</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="shuffleOptions">
+                            <span>Shuffle Options</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableTimer">
+                            <span>Enable Timer (30s per question)</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>
+                <div class="loading-text" id="loadingText" style="display: none;">
+                    Loading questions...
+                </div>
+            </div>
+        </div>
 
-  fetch('questions.json')
-    .then(response => response.json())
-    .then(data => {
-      quizData = data;
-      displayQuestion(currentQuestionIndex);
-    })
-    .catch(error => {
-      console.error('Error loading questions:', error);
-      document.getElementById('question-text').innerText = "Error loading quiz data.";
-    });
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="questionNumber">Question 1 of 0</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="timer-container" id="timerContainer" style="display: none;">
+                    <svg class="timer-svg" viewBox="0 0 36 36">
+                        <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                        <path class="timer-progress" id="timerProgress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                    </svg>
+                    <span class="timer-text" id="timerText">30</span>
+                </div>
+            </div>
 
-  function displayQuestion(index) {
-    const q = quizData[index];
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
+            <div class="quiz-content">
+                <div class="question-card">
+                    <h2 id="questionText">Question will appear here</h2>
+                    <div class="options-container" id="optionsContainer">
+                        <!-- Options will be dynamically generated -->
+                    </div>
+                </div>
 
-    // Display the question
-    questionText.innerText = `${index + 1}. ${q.question}`;
+                <div class="quiz-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" disabled>Next</button>
+                    <button class="btn btn-success" id="submitBtn" style="display: none;">Submit Quiz</button>
+                </div>
+            </div>
+        </div>
 
-    // Clear previous options
-    optionsContainer.innerHTML = '';
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-content">
+                <h1>Quiz Complete!</h1>
+                <div class="results-cards">
+                    <div class="result-card">
+                        <div class="result-icon">📊</div>
+                        <div class="result-label">Total Questions</div>
+                        <div class="result-value" id="totalQuestions">0</div>
+                    </div>
+                    <div class="result-card correct">
+                        <div class="result-icon">✓</div>
+                        <div class="result-label">Correct Answers</div>
+                        <div class="result-value" id="correctAnswers">0</div>
+                    </div>
+                    <div class="result-card wrong">
+                        <div class="result-icon">✗</div>
+                        <div class="result-label">Wrong Answers</div>
+                        <div class="result-value" id="wrongAnswers">0</div>
+                    </div>
+                    <div class="result-card percentage">
+                        <div class="result-icon">🎯</div>
+                        <div class="result-label">Score</div>
+                        <div class="result-value" id="percentageScore">0%</div>
+                    </div>
+                </div>
+                <div class="performance-message" id="performanceMessage"></div>
+                <button class="btn btn-primary" id="restartBtn">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
 
-    // Create buttons for each option
-    q.options.forEach(option => {
-      const button = document.createElement('button');
-      button.innerText = option;
-      button.style.display = "block";
-      button.style.margin = "10px 0";
-      button.onclick = () => checkAnswer(option, q.answer);
-      optionsContainer.appendChild(button);
-    });
-  }
-
-  function checkAnswer(selected, correct) {
-    if (selected === correct) {
-      alert("Correct!");
-    } else {
-      alert("Wrong! The correct answer was: " + correct);
-    }
-    
-    // Move to next question automatically
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length) {
-      displayQuestion(currentQuestionIndex);
-    } else {
-      alert("Quiz Finished!");
-    }
-  }
-</script>
+    <script src="script.js"></script>
+</body>
+</html>
