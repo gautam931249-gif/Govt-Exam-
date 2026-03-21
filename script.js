@@ -1,5 +1,7 @@
 const quizState = {
-    questions: [],
+    allQuestions: {}, // Stores the A-Z object from JSON
+    selectedLetter: 'A', // Default selected letter
+    questions: [], // The questions for the currently selected letter
     currentQuestionIndex: 0,
     userAnswers: [],
     timerInterval: null,
@@ -17,6 +19,7 @@ const elements = {
     resultsScreen: document.getElementById('resultsScreen'),
     startQuizBtn: document.getElementById('startQuizBtn'),
     loadingText: document.getElementById('loadingText'),
+    alphabetGrid: document.getElementById('alphabetGrid'),
     shuffleQuestionsCheckbox: document.getElementById('shuffleQuestions'),
     shuffleOptionsCheckbox: document.getElementById('shuffleOptions'),
     enableTimerCheckbox: document.getElementById('enableTimer'),
@@ -54,6 +57,7 @@ function switchScreen(hideScreen, showScreen) {
     }, 100);
 }
 
+// Load questions immediately when the page loads
 async function loadQuestions() {
     try {
         elements.loadingText.style.display = 'block';
@@ -65,25 +69,47 @@ async function loadQuestions() {
             throw new Error('Failed to load questions');
         }
 
-        const data = await response.json();
-        quizState.questions = data.questions;
-
-        if (quizState.settings.shuffleQuestions) {
-            quizState.questions = shuffleArray(quizState.questions);
-        }
-
-        quizState.userAnswers = new Array(quizState.questions.length).fill(null);
+        // Save the entire A-Z object
+        quizState.allQuestions = await response.json();
+        
+        // Generate the A-Z buttons
+        generateAlphabetGrid();
 
         elements.loadingText.style.display = 'none';
         elements.startQuizBtn.disabled = false;
 
-        return true;
     } catch (error) {
         console.error('Error loading questions:', error);
         elements.loadingText.textContent = 'Error loading questions. Please refresh the page.';
         elements.loadingText.style.color = 'red';
-        return false;
     }
+}
+
+function generateAlphabetGrid() {
+    elements.alphabetGrid.innerHTML = '';
+    const letters = Object.keys(quizState.allQuestions).sort();
+    
+    // Ensure the default selected letter actually exists in the JSON
+    if (letters.length > 0 && !letters.includes(quizState.selectedLetter)) {
+        quizState.selectedLetter = letters[0];
+    }
+
+    letters.forEach(letter => {
+        const btn = document.createElement('button');
+        btn.className = `letter-btn ${letter === quizState.selectedLetter ? 'selected' : ''}`;
+        btn.textContent = letter;
+        
+        btn.onclick = () => {
+            // Remove selected class from all buttons
+            document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('selected'));
+            // Add selected class to clicked button
+            btn.classList.add('selected');
+            // Update state
+            quizState.selectedLetter = letter;
+        };
+        
+        elements.alphabetGrid.appendChild(btn);
+    });
 }
 
 function startTimer() {
@@ -161,7 +187,6 @@ function displayQuestion() {
     });
 
     updateNavigationButtons();
-
     startTimer();
 }
 
@@ -273,21 +298,21 @@ function resetQuiz() {
     switchScreen(elements.resultsScreen, elements.welcomeScreen);
 }
 
-async function startQuiz() {
+function startQuiz() {
     quizState.settings.shuffleQuestions = elements.shuffleQuestionsCheckbox.checked;
     quizState.settings.shuffleOptions = elements.shuffleOptionsCheckbox.checked;
     quizState.settings.enableTimer = elements.enableTimerCheckbox.checked;
 
     elements.timerContainer.style.display = quizState.settings.enableTimer ? 'block' : 'none';
 
-    if (quizState.questions.length === 0) {
-        const loaded = await loadQuestions();
-        if (!loaded) return;
-    } else if (quizState.settings.shuffleQuestions) {
-        quizState.questions = shuffleArray(quizState.questions);
-        quizState.userAnswers = new Array(quizState.questions.length).fill(null);
-    }
+    // Grab the questions for the currently selected letter
+    let selectedQuestions = [...quizState.allQuestions[quizState.selectedLetter]];
 
+    if (quizState.settings.shuffleQuestions) {
+        selectedQuestions = shuffleArray(selectedQuestions);
+    }
+    
+    quizState.questions = selectedQuestions;
     quizState.currentQuestionIndex = 0;
     quizState.userAnswers = new Array(quizState.questions.length).fill(null);
 
@@ -301,6 +326,7 @@ elements.nextBtn.addEventListener('click', handleNext);
 elements.submitBtn.addEventListener('click', handleSubmit);
 elements.restartBtn.addEventListener('click', resetQuiz);
 
+// Initialize the app
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadQuestions);
 } else {
