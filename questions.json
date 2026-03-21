@@ -1,204 +1,106 @@
 {
-  "questions": [
-    {
-      "question": "What does the word 'Aberration' mean?",
-      "options": [
-        "A departure from what is normal or expected",
-        "A type of mathematical calculation",
-        "A method of communication",
-        "A form of government"
-      ],
-      "answer": "A departure from what is normal or expected"
-    },
-    {
-      "question": "Choose the correct meaning of 'Benevolent':",
-      "options": [
-        "Showing ill will or hatred",
-        "Well-meaning and kindly",
-        "Extremely wealthy",
-        "Lacking in courage"
-      ],
-      "answer": "Well-meaning and kindly"
-    },
-    {
-      "question": "What is the meaning of 'Cacophony'?",
-      "options": [
-        "A pleasant musical sound",
-        "A harsh, discordant mixture of sounds",
-        "Complete silence",
-        "A type of musical instrument"
-      ],
-      "answer": "A harsh, discordant mixture of sounds"
-    },
-    {
-      "question": "'Diligent' means:",
-      "options": [
-        "Lazy and unmotivated",
-        "Having or showing care in one's work",
-        "Extremely intelligent",
-        "Quick to anger"
-      ],
-      "answer": "Having or showing care in one's work"
-    },
-    {
-      "question": "What does 'Ephemeral' mean?",
-      "options": [
-        "Lasting for a very long time",
-        "Lasting for a very short time",
-        "Of medium duration",
-        "Eternal or timeless"
-      ],
-      "answer": "Lasting for a very short time"
-    },
-    {
-      "question": "The word 'Fastidious' means:",
-      "options": [
-        "Very slow and careful",
-        "Extremely fast",
-        "Very attentive to detail and accuracy",
-        "Careless and sloppy"
-      ],
-      "answer": "Very attentive to detail and accuracy"
-    },
-    {
-      "question": "'Gregarious' refers to someone who is:",
-      "options": [
-        "Fond of company; sociable",
-        "Prefers to be alone",
-        "Extremely intelligent",
-        "Always angry"
-      ],
-      "answer": "Fond of company; sociable"
-    },
-    {
-      "question": "What is the meaning of 'Hackneyed'?",
-      "options": [
-        "Fresh and original",
-        "Lacking significance through overuse",
-        "Extremely valuable",
-        "Related to horses"
-      ],
-      "answer": "Lacking significance through overuse"
-    },
-    {
-      "question": "'Innocuous' means:",
-      "options": [
-        "Extremely dangerous",
-        "Not harmful or offensive",
-        "Very guilty",
-        "Innocent of a crime"
-      ],
-      "answer": "Not harmful or offensive"
-    },
-    {
-      "question": "What does 'Juxtapose' mean?",
-      "options": [
-        "To separate things far apart",
-        "To place close together for contrasting effect",
-        "To judge someone harshly",
-        "To confuse or perplex"
-      ],
-      "answer": "To place close together for contrasting effect"
-    },
-    {
-      "question": "The word 'Keen' can mean:",
-      "options": [
-        "Dull and uninteresting",
-        "Having a sharp edge or intense interest",
-        "Moderately interested",
-        "Completely unaware"
-      ],
-      "answer": "Having a sharp edge or intense interest"
-    },
-    {
-      "question": "'Lucid' means:",
-      "options": [
-        "Confused and unclear",
-        "Expressed clearly; easy to understand",
-        "Very lucky",
-        "Extremely bright"
-      ],
-      "answer": "Expressed clearly; easy to understand"
-    },
-    {
-      "question": "What does 'Mundane' mean?",
-      "options": [
-        "Exciting and extraordinary",
-        "Lacking interest or excitement; dull",
-        "Related to the moon",
-        "Extremely important"
-      ],
-      "answer": "Lacking interest or excitement; dull"
-    },
-    {
-      "question": "'Nonchalant' refers to someone who is:",
-      "options": [
-        "Very anxious and worried",
-        "Casually calm and relaxed",
-        "Extremely energetic",
-        "Always cold"
-      ],
-      "answer": "Casually calm and relaxed"
-    },
-    {
-      "question": "What is the meaning of 'Obscure'?",
-      "options": [
-        "Very clear and obvious",
-        "Not discovered or known about; uncertain",
-        "Extremely bright",
-        "Very popular"
-      ],
-      "answer": "Not discovered or known about; uncertain"
-    },
-    {
-      "question": "'Pragmatic' means:",
-      "options": [
-        "Dealing with things realistically",
-        "Extremely idealistic",
-        "Very impractical",
-        "Always theoretical"
-      ],
-      "answer": "Dealing with things realistically"
-    },
-    {
-      "question": "What does 'Quaint' mean?",
-      "options": [
-        "Modern and up-to-date",
-        "Attractively unusual or old-fashioned",
-        "Very large",
-        "Extremely quiet"
-      ],
-      "answer": "Attractively unusual or old-fashioned"
-    },
-    {
-      "question": "'Resilient' means:",
-      "options": [
-        "Easily broken or damaged",
-        "Able to withstand or recover quickly from difficulties",
-        "Very resistant to change",
-        "Always silent"
-      ],
-      "answer": "Able to withstand or recover quickly from difficulties"
-    },
-    {
-      "question": "What is the meaning of 'Serene'?",
-      "options": [
-        "Chaotic and turbulent",
-        "Calm, peaceful, and untroubled",
-        "Extremely serious",
-        "Very severe"
-      ],
-      "answer": "Calm, peaceful, and untroubled"
-    },
-    {
-      "question": "'Tenacious' refers to someone who is:",
-      "options": [
-        "Giving up easily",
-        "Holding firmly to something; persistent",
-        "Very tense",
-        "Always truthful"
-      ],
-      "answer": "Holding firmly to something; persistent"
-    }
+  "A": [
+    { "question": "What does 'Aberration' mean?", "options": ["A departure from what is normal", "A type of calculation", "A method of communication", "A form of government"], "answer": "A departure from what is normal" },
+    { "question": "What does 'Acumen' mean?", "options": ["The ability to make good judgments", "A sharp pain", "A type of plant", "A loud noise"], "answer": "The ability to make good judgments" }
+  ],
+  "B": [
+    { "question": "Choose the correct meaning of 'Benevolent':", "options": ["Showing ill will", "Well-meaning and kindly", "Extremely wealthy", "Lacking courage"], "answer": "Well-meaning and kindly" },
+    { "question": "What does 'Belligerent' mean?", "options": ["Hostile and aggressive", "Peaceful and calm", "Beautiful and elegant", "Old and worn out"], "answer": "Hostile and aggressive" }
+  ],
+  "C": [
+    { "question": "What is the meaning of 'Cacophony'?", "options": ["A pleasant sound", "A harsh, discordant mixture of sounds", "Complete silence", "A musical instrument"], "answer": "A harsh, discordant mixture of sounds" },
+    { "question": "What does 'Candid' mean?", "options": ["Hidden and secret", "Truthful and straightforward", "Sweet and sugary", "Dark and gloomy"], "answer": "Truthful and straightforward" }
+  ],
+  "D": [
+    { "question": "'Diligent' means:", "options": ["Lazy and unmotivated", "Showing care in one's work", "Extremely intelligent", "Quick to anger"], "answer": "Showing care in one's work" },
+    { "question": "What does 'Dauntless' mean?", "options": ["Showing fearlessness and determination", "Easily scared", "Very tired", "Without any money"], "answer": "Showing fearlessness and determination" }
+  ],
+  "E": [
+    { "question": "What does 'Ephemeral' mean?", "options": ["Lasting for a very long time", "Lasting for a very short time", "Of medium duration", "Eternal"], "answer": "Lasting for a very short time" },
+    { "question": "What does 'Eloquent' mean?", "options": ["Fluent or persuasive in speaking or writing", "Unable to speak clearly", "Very quiet", "Extremely loud"], "answer": "Fluent or persuasive in speaking or writing" }
+  ],
+  "F": [
+    { "question": "The word 'Fastidious' means:", "options": ["Very slow and careful", "Extremely fast", "Very attentive to detail", "Careless and sloppy"], "answer": "Very attentive to detail" },
+    { "question": "What does 'Fervent' mean?", "options": ["Cold and unfeeling", "Having or displaying a passionate intensity", "Tired and sleepy", "Sick and weak"], "answer": "Having or displaying a passionate intensity" }
+  ],
+  "G": [
+    { "question": "'Gregarious' refers to someone who is:", "options": ["Fond of company; sociable", "Prefers to be alone", "Extremely intelligent", "Always angry"], "answer": "Fond of company; sociable" },
+    { "question": "What does 'Grandiose' mean?", "options": ["Small and humble", "Impressive and imposing in appearance or style", "Green and leafy", "Old and broken"], "answer": "Impressive and imposing in appearance or style" }
+  ],
+  "H": [
+    { "question": "What is the meaning of 'Hackneyed'?", "options": ["Fresh and original", "Lacking significance through overuse", "Extremely valuable", "Related to horses"], "answer": "Lacking significance through overuse" },
+    { "question": "What does 'Haughty' mean?", "options": ["Arrogantly superior and disdainful", "Humble and kind", "Hot and sweaty", "Happy and joyful"], "answer": "Arrogantly superior and disdainful" }
+  ],
+  "I": [
+    { "question": "'Innocuous' means:", "options": ["Extremely dangerous", "Not harmful or offensive", "Very guilty", "Innocent of a crime"], "answer": "Not harmful or offensive" },
+    { "question": "What does 'Ineffable' mean?", "options": ["Too great or extreme to be expressed in words", "Easily explained", "Not effective", "Very efficient"], "answer": "Too great or extreme to be expressed in words" }
+  ],
+  "J": [
+    { "question": "What does 'Juxtapose' mean?", "options": ["To separate things far apart", "To place close together for contrasting effect", "To judge someone harshly", "To confuse"], "answer": "To place close together for contrasting effect" },
+    { "question": "What does 'Jovial' mean?", "options": ["Cheerful and friendly", "Sad and depressed", "Angry and mean", "Tired and lazy"], "answer": "Cheerful and friendly" }
+  ],
+  "K": [
+    { "question": "The word 'Keen' can mean:", "options": ["Dull and uninteresting", "Having a sharp edge or intense interest", "Moderately interested", "Completely unaware"], "answer": "Having a sharp edge or intense interest" },
+    { "question": "What does 'Kinetic' mean?", "options": ["Relating to or resulting from motion", "Standing completely still", "Related to family", "A type of clothing"], "answer": "Relating to or resulting from motion" }
+  ],
+  "L": [
+    { "question": "'Lucid' means:", "options": ["Confused and unclear", "Expressed clearly; easy to understand", "Very lucky", "Extremely bright"], "answer": "Expressed clearly; easy to understand" },
+    { "question": "What does 'Languid' mean?", "options": ["Displaying a disinclination for physical exertion; slow and relaxed", "Full of energy", "Speaking very loudly", "Moving very quickly"], "answer": "Displaying a disinclination for physical exertion; slow and relaxed" }
+  ],
+  "M": [
+    { "question": "What does 'Mundane' mean?", "options": ["Exciting and extraordinary", "Lacking interest or excitement; dull", "Related to the moon", "Extremely important"], "answer": "Lacking interest or excitement; dull" },
+    { "question": "What does 'Magnanimous' mean?", "options": ["Very generous or forgiving", "Selfish and greedy", "Extremely small", "Very magnetic"], "answer": "Very generous or forgiving" }
+  ],
+  "N": [
+    { "question": "'Nonchalant' refers to someone who is:", "options": ["Very anxious and worried", "Casually calm and relaxed", "Extremely energetic", "Always cold"], "answer": "Casually calm and relaxed" },
+    { "question": "What does 'Nefarious' mean?", "options": ["Wicked or criminal", "Good and holy", "New and shiny", "Far away"], "answer": "Wicked or criminal" }
+  ],
+  "O": [
+    { "question": "What is the meaning of 'Obscure'?", "options": ["Very clear and obvious", "Not discovered or known about; uncertain", "Extremely bright", "Very popular"], "answer": "Not discovered or known about; uncertain" },
+    { "question": "What does 'Ostentatious' mean?", "options": ["Characterized by vulgar or pretentious display", "Simple and plain", "Hidden from view", "Very quiet"], "answer": "Characterized by vulgar or pretentious display" }
+  ],
+  "P": [
+    { "question": "'Pragmatic' means:", "options": ["Dealing with things realistically", "Extremely idealistic", "Very impractical", "Always theoretical"], "answer": "Dealing with things realistically" },
+    { "question": "What does 'Pensive' mean?", "options": ["Engaged in deep or serious thought", "Without a care in the world", "Very expensive", "Writing with a pen"], "answer": "Engaged in deep or serious thought" }
+  ],
+  "Q": [
+    { "question": "What does 'Quaint' mean?", "options": ["Modern and up-to-date", "Attractively unusual or old-fashioned", "Very large", "Extremely quiet"], "answer": "Attractively unusual or old-fashioned" },
+    { "question": "What does 'Quixotic' mean?", "options": ["Exceedingly idealistic; unrealistic and impractical", "Very practical and grounded", "Quick and fast", "Related to exotic animals"], "answer": "Exceedingly idealistic; unrealistic and impractical" }
+  ],
+  "R": [
+    { "question": "'Resilient' means:", "options": ["Easily broken or damaged", "Able to withstand or recover quickly from difficulties", "Very resistant to change", "Always silent"], "answer": "Able to withstand or recover quickly from difficulties" },
+    { "question": "What does 'Reticent' mean?", "options": ["Not revealing one's thoughts or feelings readily", "Talking too much", "Ready and willing", "Repeating things often"], "answer": "Not revealing one's thoughts or feelings readily" }
+  ],
+  "S": [
+    { "question": "What is the meaning of 'Serene'?", "options": ["Chaotic and turbulent", "Calm, peaceful, and untroubled", "Extremely serious", "Very severe"], "answer": "Calm, peaceful, and untroubled" },
+    { "question": "What does 'Sycophant' mean?", "options": ["A person who acts obsequiously toward someone important to gain advantage", "A type of elephant", "A very sick person", "A brave leader"], "answer": "A person who acts obsequiously toward someone important to gain advantage" }
+  ],
+  "T": [
+    { "question": "'Tenacious' refers to someone who is:", "options": ["Giving up easily", "Holding firmly to something; persistent", "Very tense", "Always truthful"], "answer": "Holding firmly to something; persistent" },
+    { "question": "What does 'Trepidation' mean?", "options": ["A feeling of fear or agitation about something that may happen", "Extreme bravery", "A type of trap", "Walking heavily"], "answer": "A feeling of fear or agitation about something that may happen" }
+  ],
+  "U": [
+    { "question": "What does 'Ubiquitous' mean?", "options": ["Present, appearing, or found everywhere", "Very rare and hard to find", "Unique and one-of-a-kind", "Underneath the ground"], "answer": "Present, appearing, or found everywhere" },
+    { "question": "What does 'Uncanny' mean?", "options": ["Strange or mysterious, especially in an unsettling way", "Very normal and expected", "Unable to open a can", "Very funny"], "answer": "Strange or mysterious, especially in an unsettling way" }
+  ],
+  "V": [
+    { "question": "What does 'Venerable' mean?", "options": ["Accorded a great deal of respect, especially because of age, wisdom, or character", "Very vulnerable and weak", "Poisonous", "Full of energy"], "answer": "Accorded a great deal of respect, especially because of age, wisdom, or character" },
+    { "question": "What does 'Voracious' mean?", "options": ["Wanting or devouring great quantities of food", "Speaking the truth", "Very spacious", "Moving in a circle"], "answer": "Wanting or devouring great quantities of food" }
+  ],
+  "W": [
+    { "question": "What does 'Wane' mean?", "options": ["To decrease in vigor, power, or extent; become weaker", "To grow larger and stronger", "To cry loudly", "To wait patiently"], "answer": "To decrease in vigor, power, or extent; become weaker" },
+    { "question": "What does 'Whimsical' mean?", "options": ["Playfully quaint or fanciful, especially in an appealing and amusing way", "Very serious and strict", "Crying and sad", "Related to the wind"], "answer": "Playfully quaint or fanciful, especially in an appealing and amusing way" }
+  ],
+  "X": [
+    { "question": "What does 'Xenophobia' mean?", "options": ["Dislike of or prejudice against people from other countries", "Fear of xylophones", "Love for foreign cultures", "Fear of the unknown"], "answer": "Dislike of or prejudice against people from other countries" },
+    { "question": "What does 'Xenial' mean?", "options": ["Hospitable, especially to visiting strangers or foreigners", "Hostile and unfriendly", "Related to the color yellow", "Very dry"], "answer": "Hospitable, especially to visiting strangers or foreigners" }
+  ],
+  "Y": [
+    { "question": "What does 'Yearn' mean?", "options": ["Have an intense feeling of longing for something", "To earn a lot of money", "To shout loudly", "To throw something far"], "answer": "Have an intense feeling of longing for something" },
+    { "question": "What does 'Yielding' mean?", "options": ["Giving way to pressure or influence; submissive", "Standing firm and refusing to move", "Shouting loudly", "Producing nothing"], "answer": "Giving way to pressure or influence; submissive" }
+  ],
+  "Z": [
+    { "question": "What does 'Zealous' mean?", "options": ["Showing great energy or enthusiasm in pursuit of a cause or an objective", "Very lazy and unmotivated", "Jealous of someone else", "Related to zebras"], "answer": "Showing great energy or enthusiasm in pursuit of a cause or an objective" },
+    { "question": "What does 'Zenith' mean?", "options": ["The time at which something is most powerful or successful", "The lowest point of something", "A type of animal", "A feeling of calmness"], "answer": "The time at which something is most powerful or successful" }
   ]
 }
