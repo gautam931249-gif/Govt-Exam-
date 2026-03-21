@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Vocabulary Quiz</title>
-    <!-- Changed to relative path -->
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -14,6 +13,15 @@
             <div class="welcome-content">
                 <h1>English Vocabulary Quiz</h1>
                 <p>Test your English vocabulary knowledge with our comprehensive quiz!</p>
+                
+                <!-- A-Z Letter Selection -->
+                <div class="category-selection">
+                    <h3>Select a Letter Category</h3>
+                    <div class="alphabet-grid" id="alphabetGrid">
+                        <!-- A-Z buttons will be generated here by JavaScript -->
+                    </div>
+                </div>
+
                 <div class="quiz-options">
                     <div class="option-card">
                         <h3>Quiz Settings</h3>
@@ -31,8 +39,8 @@
                         </label>
                     </div>
                 </div>
-                <button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>
-                <div class="loading-text" id="loadingText" style="display: none;">
+                <button class="btn btn-primary" id="startQuizBtn" disabled>Start Quiz</button>
+                <div class="loading-text" id="loadingText">
                     Loading questions...
                 </div>
             </div>
@@ -104,7 +112,6 @@
         </div>
     </div>
 
-    <!-- Changed to relative path and removed type="module" for better compatibility -->
     <script src="./script.js"></script>
 </body>
 </html>
