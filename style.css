@@ -321,6 +321,34 @@ body {
     background: white;
 }
 
+.option.correct-answer {
+    background: var(--correct-color);
+    color: white;
+    border-color: var(--correct-color);
+    font-weight: 600;
+}
+
+.option.correct-answer::before {
+    transform: scaleY(1);
+    background: white;
+}
+
+.option.wrong-answer {
+    background: var(--wrong-color);
+    color: white;
+    border-color: var(--wrong-color);
+    font-weight: 600;
+}
+
+.option.wrong-answer::before {
+    transform: scaleY(1);
+    background: white;
+}
+
+.option.disabled {
+    pointer-events: none;
+}
+
 .quiz-navigation {
     display: flex;
     gap: 16px;
@@ -489,4 +517,3 @@ body {
 .timer-container.warning .timer-text {
     color: var(--wrong-color);
 }
-
