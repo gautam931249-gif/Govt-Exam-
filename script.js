@@ -144,8 +144,15 @@ function displayQuestion() {
         optionElement.textContent = option;
         optionElement.dataset.value = option;
 
-        if (quizState.userAnswers[quizState.currentQuestionIndex] === option) {
-            optionElement.classList.add('selected');
+        const previousAnswer = quizState.userAnswers[quizState.currentQuestionIndex];
+        
+        if (previousAnswer !== null) {
+            optionElement.classList.add('disabled');
+            if (option === question.answer) {
+                optionElement.classList.add('correct-answer');
+            } else if (option === previousAnswer) {
+                optionElement.classList.add('wrong-answer');
+            }
         }
 
         optionElement.addEventListener('click', () => selectOption(optionElement, option));
@@ -159,13 +166,25 @@ function displayQuestion() {
 }
 
 function selectOption(selectedElement, value) {
-    const allOptions = elements.optionsContainer.querySelectorAll('.option');
-    allOptions.forEach(opt => opt.classList.remove('selected'));
-
-    selectedElement.classList.add('selected');
+    if (quizState.userAnswers[quizState.currentQuestionIndex] !== null) {
+        return;
+    }
 
     quizState.userAnswers[quizState.currentQuestionIndex] = value;
+    const question = quizState.questions[quizState.currentQuestionIndex];
+    const correctAnswer = question.answer;
 
+    const allOptions = elements.optionsContainer.querySelectorAll('.option');
+    allOptions.forEach(opt => {
+        opt.classList.add('disabled');
+        if (opt.dataset.value === correctAnswer) {
+            opt.classList.add('correct-answer');
+        } else if (opt.dataset.value === value && value !== correctAnswer) {
+            opt.classList.add('wrong-answer');
+        }
+    });
+
+    stopTimer();
     updateNavigationButtons();
 }
 
@@ -282,9 +301,11 @@ elements.nextBtn.addEventListener('click', handleNext);
 elements.submitBtn.addEventListener('click', handleSubmit);
 elements.restartBtn.addEventListener('click', resetQuiz);
 
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadQuestions);
+} else {
     loadQuestions();
-});
+}
 
 window.addEventListener('beforeunload', (e) => {
     if (elements.quizScreen.classList.contains('active')) {
@@ -292,4 +313,3 @@ window.addEventListener('beforeunload', (e) => {
         e.returnValue = '';
     }
 });
-
