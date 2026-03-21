@@ -1,1 +1,143 @@
-
+[
+  {
+    "id": 1,
+    "question": "Which planet is known as the Red Planet?",
+    "options": ["Earth", "Mars", "Jupiter", "Saturn"],
+    "answer": "Mars"
+  },
+  {
+    "id": 2,
+    "question": "What is the capital city of France?",
+    "options": ["London", "Berlin", "Paris", "Madrid"],
+    "answer": "Paris"
+  },
+  {
+    "id": 3,
+    "question": "What is the largest ocean on Earth?",
+    "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    "answer": "Pacific Ocean"
+  },
+  {
+    "id": 4,
+    "question": "Who wrote the play 'Romeo and Juliet'?",
+    "options": ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"],
+    "answer": "William Shakespeare"
+  },
+  {
+    "id": 5,
+    "question": "What is the chemical symbol for water?",
+    "options": ["O2", "H2O", "CO2", "NaCl"],
+    "answer": "H2O"
+  },
+  {
+    "id": 6,
+    "question": "Which element has the atomic symbol 'Fe'?",
+    "options": ["Gold", "Silver", "Iron", "Copper"],
+    "answer": "Iron"
+  },
+  {
+    "id": 7,
+    "question": "In which country would you find the Great Pyramid of Giza?",
+    "options": ["Mexico", "Italy", "Egypt", "China"],
+    "answer": "Egypt"
+  },
+  {
+    "id": 8,
+    "question": "What is the hardest natural substance on Earth?",
+    "options": ["Gold", "Iron", "Diamond", "Quartz"],
+    "answer": "Diamond"
+  },
+  {
+    "id": 9,
+    "question": "Which gas do plants primarily use for photosynthesis?",
+    "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+    "answer": "Carbon Dioxide"
+  },
+  {
+    "id": 10,
+    "question": "How many continents are there on Earth?",
+    "options": ["5", "6", "7", "8"],
+    "answer": "7"
+  },
+  {
+    "id": 11,
+    "question": "Who is known as the 'Father of Computers'?",
+    "options": ["Alan Turing", "Charles Babbage", "Bill Gates", "Steve Jobs"],
+    "answer": "Charles Babbage"
+  },
+  {
+    "id": 12,
+    "question": "Which is the smallest country in the world by land area?",
+    "options": ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
+    "answer": "Vatican City"
+  },
+  {
+    "id": 13,
+    "question": "What is the currency of Japan?",
+    "options": ["Yuan", "Won", "Yen", "Ringgit"],
+    "answer": "Yen"
+  },
+  {
+    "id": 14,
+    "question": "Which animal is the largest mammal in the world?",
+    "options": ["African Elephant", "Blue Whale", "Giraffe", "Colossal Squid"],
+    "answer": "Blue Whale"
+  },
+  {
+    "id": 15,
+    "question": "What is the main ingredient in guacamole?",
+    "options": ["Tomato", "Onion", "Avocado", "Pepper"],
+    "answer": "Avocado"
+  },
+  {
+    "id": 16,
+    "question": "Which year did the Titanic sink?",
+    "options": ["1905", "1912", "1918", "1923"],
+    "answer": "1912"
+  },
+  {
+    "id": 17,
+    "question": "What is the capital of Italy?",
+    "options": ["Venice", "Florence", "Naples", "Rome"],
+    "answer": "Rome"
+  },
+  {
+    "id": 18,
+    "question": "How many bones are in the adult human body?",
+    "options": ["186", "206", "216", "226"],
+    "answer": "206"
+  },
+  {
+    "id": 19,
+    "question": "Which organ is responsible for pumping blood through the body?",
+    "options": ["Lungs", "Liver", "Heart", "Kidneys"],
+    "answer": "Heart"
+  },
+  {
+    "id": 20,
+    "question": "What is the fastest land animal?",
+    "options": ["Lion", "Cheetah", "Gazelle", "Leopard"],
+    "answer": "Cheetah"
+  },
+  {
+    "id": 21,
+    "question": "Who painted the 'Mona Lisa'?",
+    "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"],
+    "answer": "Leonardo da Vinci"
+  },
+  {
+    "id": 22,
+    "question": "What is the boiling point of water at sea level?",
+    "options": ["90°C", "100°C", "110°C", "120°C"],
+    "answer": "100°C"
+  },
+  {
+    "id": 23,
+    "question": "Which country is home to the Kangaroo?",
+    "options": ["India", "South Africa", "Australia", "Brazil"],
+    "answer": "Australia"
+  },
+  {
+    "id": 24,
+    "question": "What is the square root of 64?",
+    "options":
