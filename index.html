@@ -1,18 +1,53 @@
 <script>
   let quizData = [];
+  let currentQuestionIndex = 0;
 
-  // This function pulls the 2000 questions from your JSON file
   fetch('questions.json')
     .then(response => response.json())
     .then(data => {
       quizData = data;
-      displayQuestion(0); // Start with the first question
+      displayQuestion(currentQuestionIndex);
     })
-    .catch(error => console.error('Error loading questions:', error));
+    .catch(error => {
+      console.error('Error loading questions:', error);
+      document.getElementById('question-text').innerText = "Error loading quiz data.";
+    });
 
   function displayQuestion(index) {
     const q = quizData[index];
-    document.getElementById('question-text').innerText = q.question;
-    // Add logic here to display buttons for q.options
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+
+    // Display the question
+    questionText.innerText = `${index + 1}. ${q.question}`;
+
+    // Clear previous options
+    optionsContainer.innerHTML = '';
+
+    // Create buttons for each option
+    q.options.forEach(option => {
+      const button = document.createElement('button');
+      button.innerText = option;
+      button.style.display = "block";
+      button.style.margin = "10px 0";
+      button.onclick = () => checkAnswer(option, q.answer);
+      optionsContainer.appendChild(button);
+    });
+  }
+
+  function checkAnswer(selected, correct) {
+    if (selected === correct) {
+      alert("Correct!");
+    } else {
+      alert("Wrong! The correct answer was: " + correct);
+    }
+    
+    // Move to next question automatically
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+      displayQuestion(currentQuestionIndex);
+    } else {
+      alert("Quiz Finished!");
+    }
   }
 </script>
