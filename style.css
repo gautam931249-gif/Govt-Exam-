@@ -1,51 +1,79 @@
-/* Add this to the BOTTOM of your existing style.css */
-
-.category-selection {
-    background: var(--bg-color);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 24px;
-    border: 2px solid var(--border-color);
+:root {
+    --primary-color: #4A90E2;
+    --primary-hover: #357ABD;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-primary: #333333;
+    --border-color: #e0e0e0;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.category-selection h3 {
-    font-size: 1.2rem;
-    margin-bottom: 16px;
-    color: var(--text-primary);
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-.alphabet-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
+body { background-color: var(--bg-color); color: var(--text-primary); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
 
-.letter-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    border: 2px solid var(--border-color);
-    background: var(--card-bg);
-    color: var(--text-primary);
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.container { background: var(--card-bg); width: 100%; max-width: 800px; border-radius: 12px; box-shadow: var(--shadow); padding: 30px; overflow: hidden; position: relative; }
 
-.letter-btn:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-}
+/* IMPORTANT: This fixes the multiple screens showing at once */
+.screen { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+.screen.active { display: block; opacity: 1; }
 
-.letter-btn.selected {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow);
-}
+h1, h2, h3 { color: var(--text-primary); margin-bottom: 15px; text-align: center; }
+p { text-align: center; margin-bottom: 20px; color: #666; }
+
+/* Buttons */
+.btn { display: block; width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
+.btn-primary { background: var(--primary-color); color: white; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.btn-secondary { background: var(--secondary-color); color: white; }
+.btn-success { background: var(--success-color); color: white; }
+.btn:disabled { background: #cccccc; cursor: not-allowed; }
+
+/* Alphabet Grid Styles */
+.category-selection { background: #fdfdfd; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 2px solid var(--border-color); }
+.alphabet-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.letter-btn { width: 40px; height: 40px; border-radius: 8px; border: 2px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); font-weight: bold; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; }
+.letter-btn:hover { border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-2px); }
+.letter-btn.selected { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: var(--shadow); }
+
+/* Settings */
+.option-card { border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+.checkbox-label { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; }
+.checkbox-label input { margin-right: 10px; cursor: pointer; width: 18px; height: 18px; }
+
+/* Quiz Headers & Progress */
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.progress-info { flex: 1; }
+.progress-bar { width: 100%; height: 10px; background: #e0e0e0; border-radius: 5px; margin-top: 5px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary-color); width: 0%; transition: width 0.3s ease; }
+
+/* Timer */
+.timer-container { position: relative; width: 50px; height: 50px; margin-left: 20px; }
+.timer-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.timer-bg { fill: none; stroke: #eee; stroke-width: 3; }
+.timer-progress { fill: none; stroke: var(--primary-color); stroke-width: 3; stroke-dasharray: 100; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+.timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 1.1rem; }
+.timer-container.warning .timer-progress { stroke: var(--danger-color); }
+.timer-container.warning .timer-text { color: var(--danger-color); }
+
+/* Options Container */
+.options-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.option { padding: 15px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: 0.2s; background: #fff; font-size: 1.05rem; }
+.option:hover:not(.disabled) { border-color: var(--primary-color); background: #f0f7ff; }
+.option.disabled { cursor: not-allowed; opacity: 0.8; }
+.option.correct-answer { background: #d4edda; border-color: var(--success-color); color: #155724; font-weight: bold; }
+.option.wrong-answer { background: #f8d7da; border-color: var(--danger-color); color: #721c24; text-decoration: line-through; }
+
+/* Navigation */
+.quiz-navigation { display: flex; gap: 10px; margin-top: 20px; }
+.quiz-navigation .btn { margin-top: 0; }
+
+/* Results */
+.results-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+.result-card { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; border: 1px solid var(--border-color); }
+.result-icon { font-size: 2rem; margin-bottom: 10px; }
+.result-value { font-size: 1.5rem; font-weight: bold; margin-top: 5px; color: var(--primary-color); }
+.performance-message { text-align: center; font-size: 1.2rem; font-weight: bold; margin: 20px 0; padding: 15px; background: #e2e3e5; border-radius: 8px; }
