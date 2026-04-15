@@ -149,13 +149,14 @@
     { "question": "One who practice one of the fine arts", "options": ["Artist", "Articulate", "Articulation", "Ascetic"], "answer": "Artist" },
     { "question": "One who denies oneself ordinary bodily pleasures", "options": ["Ascetic", "Articulate", "Articulation", "Artist"], "answer": "Ascetic" },
     { "question": "To attribute a cause or characteristic to something", "options": ["Ascribe", "Askance", "Assailant", "Assassin"], "answer": "Ascribe" },
+ { "question": "To attribute a cause or characteristic to something", "options": ["Ascribe", "Askance", "Assailant", "Assassin"], "answer": "Ascribe" },
     { "question": "Nations that do not trust each other or look upon each other with suspicion", "options": ["Askance", "Ascribe", "Assailant", "Assassin"], "answer": "Askance" }
-  ]
-}
   ],
   "B": [
     { "question": "Choose the correct meaning of 'Benevolent':", "options": ["Showing ill will", "Well-meaning and kindly", "Extremely wealthy", "Lacking courage"], "answer": "Well-meaning and kindly" },
     { "question": "What does 'Belligerent' mean?", "options": ["Hostile and aggressive", "Peaceful and calm", "Beautiful and elegant", "Old and worn out"], "answer": "Hostile and aggressive" }
+  ]
+}
   ],
   "C": [
     { "question": "What is the meaning of 'Cacophony'?", "options": ["A pleasant sound", "A harsh, discordant mixture of sounds", "Complete silence", "A musical instrument"], "answer": "A harsh, discordant mixture of sounds" },
